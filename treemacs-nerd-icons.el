@@ -51,7 +51,7 @@
                                   (func (cadr item))
                                   (args (append (list (cadr (cdr item))) '(:v-adjust -0.05 :height 1.0) (cdr (cddr item))))
                                   (icon (apply func args)))
-                             (let* ((icon-pair (cons (format " %s%s%s" treemacs-nerd-icons-tab icon treemacs-nerd-icons-tab) (format " %s%s%s" treemacs-nerd-icons-tab icon treemacs-nerd-icons-tab)))
+                             (let* ((icon-pair (cons (format " %s%s%s%s" treemacs-nerd-icons-tab treemacs-nerd-icons-tab icon treemacs-nerd-icons-tab) (format " %s%s%s%s" treemacs-nerd-icons-tab treemacs-nerd-icons-tab icon treemacs-nerd-icons-tab)))
                                     (gui-icons (treemacs-theme->gui-icons treemacs--current-theme))
                                     (tui-icons (treemacs-theme->tui-icons treemacs--current-theme))
                                     (gui-icon  (car icon-pair))
@@ -136,7 +136,7 @@
                                                :extensions (briefcase)
                                                :fallback 'same-as-icon)
 
-                         (treemacs-create-icon :icon (format " %s%s%s" treemacs-nerd-icons-tab (nerd-icons-faicon "nf-fa-file_o" :face 'treemacs-nerd-icons-file-face) treemacs-nerd-icons-tab)
+                         (treemacs-create-icon :icon (format " %s%s%s%s" treemacs-nerd-icons-tab treemacs-nerd-icons-tab (nerd-icons-faicon "nf-fa-file_o" :face 'treemacs-nerd-icons-file-face) treemacs-nerd-icons-tab)
                                                :extensions (fallback)
                                                :fallback 'same-as-icon)))
 
