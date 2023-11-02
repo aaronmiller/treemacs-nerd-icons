@@ -140,5 +140,35 @@
                                                :extensions (fallback)
                                                :fallback 'same-as-icon)))
 
+(treemacs-create-theme "simple"
+                       :config
+                       (progn
+                         (dolist (item nerd-icons-extension-icon-alist)
+                           (let* ((extension (car item))
+                                  (func (cadr item))
+                                  (args (append (list (cadr (cdr item))) '(:v-adjust -0.05 :height 1.0) (cdr (cddr item))))
+                                  (icon (apply func args)))
+                             (let* ((icon-pair (cons (format "") (format "")))
+                                    (gui-icons (treemacs-theme->gui-icons treemacs--current-theme))
+                                    (tui-icons (treemacs-theme->tui-icons treemacs--current-theme))
+                                    (gui-icon  (car icon-pair))
+                                    (tui-icon  (cdr icon-pair)))
+                               (ht-set! gui-icons extension gui-icon)
+                               (ht-set! tui-icons extension tui-icon))))
+
+                         ;; directory and other icons
+                         (treemacs-create-icon :icon (format "")
+                                               :extensions (root-closed root-open)
+                                               :fallback 'same-as-icon)
+                         (treemacs-create-icon :icon (format "%s " (propertize "-" 'face 'treemacs-nerd-icons-file-face))
+                                               :extensions (dir-open)
+                                               :fallback 'same-as-icon)
+                         (treemacs-create-icon :icon (format "%s " (propertize "+" 'face 'treemacs-nerd-icons-file-face))
+                                               :extensions (dir-closed)
+                                               :fallback 'same-as-icon)
+                         (treemacs-create-icon :icon (format "")
+                                               :extensions (fallback)
+                                               :fallback 'same-as-icon)))
+
 (provide 'treemacs-nerd-icons)
 ;;; treemacs-nerd-icons.el ends here
